@@ -41,6 +41,10 @@ const lastIdx = process.argv.indexOf("--last");
 const lastN = lastIdx !== -1 ? parseInt(process.argv[lastIdx + 1]) || 1 : 0;
 
 const notifyIdx = process.argv.indexOf("--notify");
+if (notifyIdx !== -1 && (process.argv[notifyIdx + 1] === undefined || process.argv[notifyIdx + 1].startsWith("--"))) {
+  console.error("Usage: whatdiditdo --notify <webhook-url>");
+  process.exit(1);
+}
 const webhookUrl = notifyIdx !== -1 ? process.argv[notifyIdx + 1] : null;
 
 async function handleUndo(cwd: string): Promise<void> {
@@ -145,6 +149,13 @@ async function main(): Promise<void> {
 
   const spinner = wantJson ? null : ora("Gathering changes...").start();
 
+  let detectedAgent: string | undefined;
+  let agentIcon: string | undefined;
+  if (blameMode) {
+    detectedAgent = await detectAgent(cwd);
+    agentIcon = getAgentIcon(detectedAgent);
+  }
+
   let combinedDiff: string;
   let log: string;
   let untracked: string[];
@@ -165,7 +176,7 @@ async function main(): Promise<void> {
       getLog(cwd),
       getUntrackedFiles(cwd),
     ]);
-    combinedDiff = diffHead || diffCached;
+    combinedDiff = (diffHead + "\n" + diffCached).trim() || "";
     log = recentLog;
     untracked = untrackedFiles;
   }
@@ -204,6 +215,7 @@ async function main(): Promise<void> {
     securityFlags,
     summary,
     noAi,
+    ...(blameMode && { detectedAgent, agentIcon }),
   };
 
   if (prMode) {
@@ -252,6 +264,7 @@ async function main(): Promise<void> {
         msg: f.msg,
       })),
       summary,
+      ...(blameMode && { detectedAgent }),
     };
     console.log(JSON.stringify(jsonOutput, null, 2));
     return;
@@ -259,11 +272,10 @@ async function main(): Promise<void> {
 
   if (webMode) {
     await openHtmlReport(reportData, combinedDiff, cwd);
-    return;
+  } else {
+    displayReport(reportData);
+    displayEmojiSummary(reportData);
   }
-
-  displayReport(reportData);
-  displayEmojiSummary(reportData);
 
   if (wantMd) {
     const outPath = await saveMarkdownReport(reportData, cwd);
