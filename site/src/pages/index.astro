@@ -328,16 +328,16 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
         <h2 class="text-3xl sm:text-4xl font-bold mb-4">
           Try it <span class="text-cyan-accent">now</span>
         </h2>
-        <p class="text-text-secondary mb-10">Clone, build, audit. Under 30 seconds.</p>
+        <p class="text-text-secondary mb-10">One command. No install needed.</p>
 
         <div class="relative group">
           <div class="rounded-xl border border-border bg-bg-secondary p-6 font-mono text-left">
-            <div class="text-text-muted text-xs mb-3"># setup</div>
-            <div class="text-cyan-accent text-sm sm:text-base break-all" id="install-cmd">git clone https://github.com/peaktwilight/whatdiditdo && cd whatdiditdo && npm i && npm run build</div>
-            <div class="text-text-muted text-xs mt-4 mb-1"># run in any git repo after an AI session</div>
-            <div class="text-text-primary text-sm sm:text-base">node dist/cli.js</div>
-            <div class="text-text-muted text-xs mt-3 mb-1"># or review last 3 commits</div>
-            <div class="text-text-primary text-sm sm:text-base">node dist/cli.js --last 3</div>
+            <div class="text-text-muted text-xs mb-3"># run in any git repo after an AI session</div>
+            <div class="text-cyan-accent text-sm sm:text-base" id="install-cmd">npx whatdiditdo</div>
+            <div class="text-text-muted text-xs mt-3 mb-1"># review last 3 commits</div>
+            <div class="text-text-primary text-sm sm:text-base">npx whatdiditdo --last 3</div>
+            <div class="text-text-muted text-xs mt-3 mb-1"># or clone for development</div>
+            <div class="text-text-secondary text-sm break-all">git clone https://github.com/peaktwilight/whatdiditdo && cd whatdiditdo && npm i && npm run build</div>
           </div>
           <button
             id="copy-btn"
