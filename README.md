@@ -88,6 +88,61 @@ Automatically flags:
 - Private keys (RSA, etc.)
 - Credentials in URLs
 
+## Auto-run after every commit
+
+Install a git hook so whatdiditdo runs automatically after every commit:
+
+```bash
+npx whatdiditdo --hook
+```
+
+To remove it:
+
+```bash
+npx whatdiditdo --unhook
+```
+
+## Undo AI changes
+
+Review what changed and selectively revert:
+
+```bash
+npx whatdiditdo --undo
+```
+
+Lists all changed files with a preview, then lets you revert individual files or the entire last commit.
+
+## HTML report
+
+Open a styled HTML report in your browser:
+
+```bash
+npx whatdiditdo --web
+```
+
+Includes diffs, file lists, security flags, and AI summary in a dark-themed dashboard.
+
+## Blame agent
+
+Detect which AI tool made the changes:
+
+```bash
+npx whatdiditdo --blame-agent
+```
+
+Checks commit messages, tool-specific config files, and git settings to identify the agent (Cursor, Copilot, Aider, Windsurf, etc.).
+
+## Webhook notifications
+
+Send results to Slack, Discord, or any webhook:
+
+```bash
+npx whatdiditdo --notify https://hooks.slack.com/services/...
+npx whatdiditdo --notify https://discord.com/api/webhooks/...
+```
+
+Auto-detects the platform and formats the payload accordingly. For unknown URLs, sends a plain JSON summary.
+
 ## Requirements
 
 - Node.js 18+

@@ -1,6 +1,6 @@
 {
   "name": "whatdiditdo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "See what your AI coding agent actually did. One command after any AI session.",
   "type": "module",
   "bin": {
