@@ -13,8 +13,10 @@ import {
 } from "./git.js";
 import { summarize } from "./analyze.js";
 import { displayReport, displayNoChanges } from "./display.js";
+import { saveMarkdownReport } from "./markdown.js";
 
 const noAi = process.argv.includes("--no-ai");
+const wantMd = process.argv.includes("--md");
 
 async function main(): Promise<void> {
   const cwd = process.cwd();
@@ -56,7 +58,7 @@ async function main(): Promise<void> {
 
   spinner.stop();
 
-  displayReport({
+  const reportData = {
     parsedFiles,
     untrackedFiles: untracked,
     totalAdded,
@@ -65,7 +67,14 @@ async function main(): Promise<void> {
     securityFlags,
     summary,
     noAi,
-  });
+  };
+
+  displayReport(reportData);
+
+  if (wantMd) {
+    const outPath = await saveMarkdownReport(reportData, cwd);
+    console.log(`Report saved to ./${outPath.split("/").pop()}`);
+  }
 }
 
 main().catch((err: Error) => {

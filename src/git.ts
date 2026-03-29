@@ -57,6 +57,15 @@ export async function getDiffStat(cwd: string): Promise<string> {
   return run("git", ["diff", "HEAD", "--stat"], cwd);
 }
 
+export async function getBranch(cwd: string): Promise<string> {
+  try {
+    const out = await run("git", ["rev-parse", "--abbrev-ref", "HEAD"], cwd);
+    return out.trim() || "unknown";
+  } catch {
+    return "unknown";
+  }
+}
+
 export async function getUntrackedFiles(cwd: string): Promise<string[]> {
   const out = await run(
     "git",
