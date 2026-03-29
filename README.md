@@ -8,7 +8,7 @@
 
 [whatdiditdo.doruk.ch](https://whatdiditdo.doruk.ch) · [npm](https://www.npmjs.com/package/whatdiditdo)
 
-One command to see everything your AI coding agent changed. Works after any Claude Code, Cursor, Copilot, or Aider session.
+One command to see everything your AI coding agent changed. Works after any AI coding session — Cursor, Copilot, Aider, Windsurf, and more.
 
 ## Quick Start
 
@@ -32,7 +32,7 @@ That's it. Run it in any git repo after an AI session.
 
 - **Files changed** — added, modified, deleted with line counts
 - **Stats** — total lines added/removed, new dependencies
-- **AI summary** — plain-english explanation of what happened (powered by Claude)
+- **AI summary** — plain-english explanation of what happened (AI-powered)
 - **Security flags** — catches hardcoded API keys, modified .env files, committed secrets
 - **Quick share** — copy-paste one-liner for Slack/Discord
 - **Emoji summary** — compact one-line recap printed after every run
@@ -41,7 +41,7 @@ That's it. Run it in any git repo after an AI session.
 
 | Flag | What it does |
 |------|-------------|
-| `npx whatdiditdo --no-ai` | Skip Claude summary, just stats |
+| `npx whatdiditdo --no-ai` | Skip AI summary, just stats |
 | `npx whatdiditdo --md` | Save markdown report |
 | `npx whatdiditdo --last N` | Review the last N commits |
 | `npx whatdiditdo --json` | Machine-readable JSON output |
@@ -74,7 +74,7 @@ Automatically flags:
 
 - Node.js 18+
 - Git
-- Claude Code CLI (`claude`) — optional, only for AI summary
+- AI CLI — optional, only needed for AI summary
 
 ## Development
 

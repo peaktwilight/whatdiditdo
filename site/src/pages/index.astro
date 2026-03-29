@@ -10,8 +10,8 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>whatdiditdo — See what your AI coding agent actually changed</title>
-    <meta name="description" content="A CLI that shows what your AI coding agent changed after any session. Works with Claude Code, Cursor, Copilot, Aider, and any tool that uses git." />
-    <meta name="keywords" content="whatdiditdo, AI coding, agent diff, code review, Claude Code, Cursor, git diff, security scan" />
+    <meta name="description" content="A CLI that shows what your AI coding agent changed after any session. Works with Cursor, Copilot, Aider, and any tool that uses git." />
+    <meta name="keywords" content="whatdiditdo, AI coding, agent diff, code review, AI coding agent, Cursor, git diff, security scan" />
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style" />
     <link rel="canonical" href="https://whatdiditdo.doruk.ch" />
     <meta property="og:title" content="whatdiditdo — See what your AI coding agent actually changed" />
@@ -228,7 +228,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
               <Brain class="w-6 h-6 text-cyan-accent" />
             </div>
             <h3 class="text-xl font-semibold mb-2">AI Summary</h3>
-            <p class="text-text-secondary leading-relaxed">Plain-English explanation of what changed and why, powered by Claude. Understand the intent, not just the diff.</p>
+            <p class="text-text-secondary leading-relaxed">Plain-English explanation of what changed and why, AI-powered. Understand the intent, not just the diff.</p>
           </div>
 
           <!-- Security Scanner -->
@@ -267,7 +267,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
             <div class="w-10 h-10 rounded-lg bg-bg-tertiary flex items-center justify-center">
               <Terminal class="w-5 h-5 text-cyan-accent" />
             </div>
-            <span class="font-mono text-sm text-text-primary font-medium">Claude Code</span>
+            <span class="font-mono text-sm text-text-primary font-medium">AI Agents</span>
           </div>
           <div class="works-with-connector"></div>
           <div class="works-with-item">
@@ -314,7 +314,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
           Why we <span class="text-cyan-accent">built this</span>
         </h2>
         <div class="space-y-6 text-text-secondary text-lg leading-relaxed">
-          <p>We let Claude Code run for 10 minutes. It touched <span class="text-white font-medium">43 files</span>.</p>
+          <p>We let an AI agent run for 10 minutes. It touched <span class="text-white font-medium">43 files</span>.</p>
           <p>We spent the next hour trying to figure out what it actually did. Reading diffs line by line. Checking if it broke anything. Wondering if it committed our API key.</p>
           <p><span class="text-cyan-accent font-medium">That hour should have been 10 seconds.</span></p>
           <p class="text-text-muted text-base">So we built the tool we wished existed.</p>
@@ -350,7 +350,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
           </button>
         </div>
 
-        <p class="text-text-muted text-xs mt-4 font-mono">Requires Node.js 18+ &middot; Claude CLI optional (--no-ai works without it)</p>
+        <p class="text-text-muted text-xs mt-4 font-mono">Requires Node.js 18+ &middot; AI summary optional (--no-ai works without it)</p>
       </div>
     </section>
 
@@ -360,7 +360,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
         <h2 class="text-2xl sm:text-3xl font-bold mb-4">Your team needs this</h2>
         <p class="text-text-secondary mb-8">Everyone using AI agents should know what they changed.</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="https://twitter.com/intent/tweet?text=whatdiditdo%20%E2%80%94%20one%20command%20to%20see%20what%20your%20AI%20coding%20agent%20actually%20changed.%20Essential%20for%20any%20team%20using%20Cursor%2FClaude%20Code%20%F0%9F%94%8D%20https%3A%2F%2Fwhatdiditdo.doruk.ch" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 bg-bg-secondary border border-border rounded-lg font-mono text-sm hover:bg-bg-tertiary transition-colors">
+          <a href="https://twitter.com/intent/tweet?text=whatdiditdo%20%E2%80%94%20one%20command%20to%20see%20what%20your%20AI%20coding%20agent%20actually%20changed.%20Essential%20for%20any%20team%20using%20AI%20agents%20%F0%9F%94%8D%20https%3A%2F%2Fwhatdiditdo.doruk.ch" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 bg-bg-secondary border border-border rounded-lg font-mono text-sm hover:bg-bg-tertiary transition-colors">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             Share on X
           </a>
@@ -398,7 +398,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
               <ChevronDown class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200" />
             </summary>
             <div class="px-6 pb-5 text-text-secondary leading-relaxed">
-              The diff is sent to Claude (via your local CLI) for the AI summary. Use <code class="font-mono text-cyan-accent text-sm bg-bg-tertiary px-1.5 py-0.5 rounded">--no-ai</code> to skip this entirely &mdash; it still shows file changes, stats, and security flags with zero network calls.
+              The diff is sent to an AI model for summarization. Use <code class="font-mono text-cyan-accent text-sm bg-bg-tertiary px-1.5 py-0.5 rounded">--no-ai</code> to skip this entirely &mdash; it still shows file changes, stats, and security flags with zero network calls.
             </div>
           </details>
 
@@ -408,7 +408,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
               <ChevronDown class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200" />
             </summary>
             <div class="px-6 pb-5 text-text-secondary leading-relaxed">
-              Anything that uses git. Claude Code, Cursor, GitHub Copilot, Aider, Windsurf, Cody, or even manual coding sessions.
+              Anything that uses git. Cursor, GitHub Copilot, Aider, Windsurf, Cody, or even manual coding sessions.
             </div>
           </details>
 
@@ -418,7 +418,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
               <ChevronDown class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200" />
             </summary>
             <div class="px-6 pb-5 text-text-secondary leading-relaxed">
-              Yes &mdash; use <code class="font-mono text-cyan-accent text-sm bg-bg-tertiary px-1.5 py-0.5 rounded">--json</code> for machine-readable output. Use <code class="font-mono text-cyan-accent text-sm bg-bg-tertiary px-1.5 py-0.5 rounded">--no-ai</code> in CI to avoid Claude dependency.
+              Yes &mdash; use <code class="font-mono text-cyan-accent text-sm bg-bg-tertiary px-1.5 py-0.5 rounded">--json</code> for machine-readable output. Use <code class="font-mono text-cyan-accent text-sm bg-bg-tertiary px-1.5 py-0.5 rounded">--no-ai</code> in CI to avoid AI dependency.
             </div>
           </details>
 
