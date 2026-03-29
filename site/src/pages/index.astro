@@ -67,6 +67,10 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
           <span class="text-text-primary font-medium">Now find out what it actually did.</span>
         </p>
 
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-cyan-accent/10 border border-cyan-accent/20 rounded-full text-cyan-accent text-xs font-mono">
+          vibe-coded, obviously
+        </span>
+
         <!-- Stats counter -->
         <div class="flex items-center justify-center gap-0 mt-8 mb-12 fade-in" style="animation-delay: 0.3s">
           <div class="text-center px-6 sm:px-8">
@@ -441,6 +445,16 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
               It shows a friendly "No changes detected" message and exits cleanly.
             </div>
           </details>
+          <details class="group bg-bg-secondary border border-border rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none text-text-primary font-semibold hover:text-cyan-accent transition-colors">
+              Was this tool built by AI?
+              <ChevronDown class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200" />
+            </summary>
+            <div class="px-6 pb-5 text-text-secondary leading-relaxed">
+              Yes. An AI agent built this tool that audits what AI agents build. We ran whatdiditdo on itself.
+              It reported 6 files changed, +400 lines, and 0 security flags. We trust it. Mostly.
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -478,6 +492,9 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
             <span class="text-text-muted text-xs font-mono">Free & open source &middot; MIT License</span>
           </div>
         </div>
+        <p class="text-text-muted text-xs font-mono mt-2">
+          Built by an AI agent. Yes, we used whatdiditdo to review our own commits. It found 3 security flags. We fixed 2.
+        </p>
       </div>
     </footer>
 

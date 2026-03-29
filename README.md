@@ -85,6 +85,10 @@ npm install
 npm run build
 ```
 
+## Full disclosure
+
+This tool was vibe-coded by an AI agent. We used whatdiditdo to audit its own creation. It's turtles all the way down.
+
 ## License
 
 MIT
