@@ -6,17 +6,23 @@ import {
   getDiffHead,
   getDiffCached,
   getLog,
+  getLastNDiff,
+  getLastNLog,
   getUntrackedFiles,
   parseDiff,
   detectNewDeps,
   scanSecurity,
 } from "./git.js";
 import { summarize } from "./analyze.js";
-import { displayReport, displayNoChanges } from "./display.js";
+import { displayReport, displayNoChanges, displayEmojiSummary } from "./display.js";
 import { saveMarkdownReport } from "./markdown.js";
 
 const noAi = process.argv.includes("--no-ai");
 const wantMd = process.argv.includes("--md");
+const wantJson = process.argv.includes("--json");
+
+const lastIdx = process.argv.indexOf("--last");
+const lastN = lastIdx !== -1 ? parseInt(process.argv[lastIdx + 1]) || 1 : 0;
 
 async function main(): Promise<void> {
   const cwd = process.cwd();
@@ -26,22 +32,42 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const spinner = ora("Gathering changes...").start();
+  const spinner = wantJson ? null : ora("Gathering changes...").start();
 
-  const [diffHead, diffCached, log, untracked] = await Promise.all([
-    getDiffHead(cwd),
-    getDiffCached(cwd),
-    getLog(cwd),
-    getUntrackedFiles(cwd),
-  ]);
+  let combinedDiff: string;
+  let log: string;
+  let untracked: string[];
 
-  // Combine diffs (prefer HEAD diff which includes both staged+unstaged when HEAD exists)
-  const combinedDiff = diffHead || diffCached;
+  if (lastN > 0) {
+    // --last N mode: show changes from the last N commits
+    const [diff, commitLog] = await Promise.all([
+      getLastNDiff(cwd, lastN),
+      getLastNLog(cwd, lastN),
+    ]);
+    combinedDiff = diff;
+    log = commitLog;
+    untracked = [];
+  } else {
+    const [diffHead, diffCached, recentLog, untrackedFiles] = await Promise.all([
+      getDiffHead(cwd),
+      getDiffCached(cwd),
+      getLog(cwd),
+      getUntrackedFiles(cwd),
+    ]);
+    combinedDiff = diffHead || diffCached;
+    log = recentLog;
+    untracked = untrackedFiles;
+  }
+
   const parsedFiles = parseDiff(combinedDiff);
 
   if (parsedFiles.length === 0 && untracked.length === 0) {
-    spinner.stop();
-    displayNoChanges();
+    spinner?.stop();
+    if (wantJson) {
+      console.log(JSON.stringify({ files: [], untracked: [], stats: { totalAdded: 0, totalRemoved: 0 }, newDeps: [], securityFlags: [], summary: null }));
+    } else {
+      displayNoChanges();
+    }
     return;
   }
 
@@ -52,11 +78,11 @@ async function main(): Promise<void> {
 
   let summary: string | null = null;
   if (!noAi && combinedDiff) {
-    spinner.text = "Asking Claude for a summary...";
+    if (spinner) spinner.text = "Asking Claude for a summary...";
     summary = await summarize(combinedDiff, log);
   }
 
-  spinner.stop();
+  spinner?.stop();
 
   const reportData = {
     parsedFiles,
@@ -69,7 +95,31 @@ async function main(): Promise<void> {
     noAi,
   };
 
+  if (wantJson) {
+    const jsonOutput = {
+      files: parsedFiles.map((f) => ({
+        file: f.file,
+        isNew: f.isNew,
+        isDeleted: f.isDeleted,
+        added: f.added,
+        removed: f.removed,
+      })),
+      untracked: untracked,
+      stats: { totalAdded, totalRemoved, totalFiles: parsedFiles.length + untracked.length },
+      newDeps,
+      securityFlags: securityFlags.map((f) => ({
+        file: f.file,
+        line: f.line,
+        msg: f.msg,
+      })),
+      summary,
+    };
+    console.log(JSON.stringify(jsonOutput, null, 2));
+    return;
+  }
+
   displayReport(reportData);
+  displayEmojiSummary(reportData);
 
   if (wantMd) {
     const outPath = await saveMarkdownReport(reportData, cwd);

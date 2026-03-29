@@ -49,6 +49,14 @@ export async function getDiffCached(cwd: string): Promise<string> {
   return run("git", ["diff", "--cached"], cwd);
 }
 
+export async function getLastNDiff(cwd: string, n: number): Promise<string> {
+  return run("git", ["diff", `HEAD~${n}..HEAD`], cwd);
+}
+
+export async function getLastNLog(cwd: string, n: number): Promise<string> {
+  return run("git", ["log", "--oneline", `-${n}`], cwd);
+}
+
 export async function getLog(cwd: string): Promise<string> {
   return run("git", ["log", "--oneline", "-20"], cwd);
 }

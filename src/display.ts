@@ -156,6 +156,32 @@ function quickShare({
   console.log();
 }
 
+export function displayEmojiSummary({
+  parsedFiles,
+  untrackedFiles,
+  totalAdded,
+  totalRemoved,
+  newDeps,
+  securityFlags,
+}: ReportData): void {
+  const totalFiles = parsedFiles.length + untrackedFiles.length;
+  const parts: string[] = [
+    `\uD83D\uDCCA ${totalFiles} file${totalFiles !== 1 ? "s" : ""}`,
+    `+${totalAdded} -${totalRemoved}`,
+  ];
+
+  if (newDeps.length > 0) {
+    parts.push(`${newDeps.length} new dep${newDeps.length !== 1 ? "s" : ""}`);
+  }
+
+  if (securityFlags.length > 0) {
+    parts.push(`\u26A0\uFE0F ${securityFlags.length} security flag${securityFlags.length !== 1 ? "s" : ""}`);
+  }
+
+  console.log(parts.join(" \u00B7 "));
+  console.log();
+}
+
 export function displayNoChanges(): void {
   header();
   console.log();
