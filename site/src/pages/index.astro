@@ -322,64 +322,35 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
       </div>
     </section>
 
-    <!-- ===== QUICK START ===== -->
-    <section class="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">
-          Get started in <span class="text-cyan-accent">seconds</span>
+    <!-- ===== INSTALL ===== -->
+    <section class="py-24 sm:py-32 px-4 sm:px-6 border-t border-border" id="install">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+          Try it <span class="text-cyan-accent">now</span>
         </h2>
-        <p class="text-text-secondary text-center max-w-lg mx-auto mb-12">
-          Clone, build, run. That's it.
-        </p>
+        <p class="text-text-secondary mb-10">Clone, build, audit. Under 30 seconds.</p>
 
-        <div class="bg-bg-secondary border border-border rounded-xl overflow-hidden relative group">
-          <div class="flex items-center justify-between px-4 py-3 bg-bg-tertiary border-b border-border">
-            <div class="flex items-center gap-2">
-              <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-              <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-              <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-              <span class="ml-2 text-xs text-text-muted font-mono">terminal</span>
-            </div>
-            <button
-              id="copy-btn"
-              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono text-text-muted hover:text-text-primary bg-bg-secondary hover:bg-bg-tertiary border border-border rounded-md transition-all duration-200"
-              aria-label="Copy to clipboard"
-            >
-              <Copy class="w-3.5 h-3.5 copy-icon" />
-              <Check class="w-3.5 h-3.5 check-icon hidden" />
-              <span class="copy-label">Copy</span>
-            </button>
+        <div class="relative group">
+          <div class="rounded-xl border border-border bg-bg-secondary p-6 font-mono text-left">
+            <div class="text-text-muted text-xs mb-3"># setup</div>
+            <div class="text-cyan-accent text-sm sm:text-base break-all" id="install-cmd">git clone https://github.com/peaktwilight/whatdiditdo && cd whatdiditdo && npm i && npm run build</div>
+            <div class="text-text-muted text-xs mt-4 mb-1"># run in any git repo after an AI session</div>
+            <div class="text-text-primary text-sm sm:text-base">node dist/cli.js</div>
+            <div class="text-text-muted text-xs mt-3 mb-1"># or review last 3 commits</div>
+            <div class="text-text-primary text-sm sm:text-base">node dist/cli.js --last 3</div>
           </div>
-          <div id="code-block" class="p-6 font-mono text-sm leading-loose">
-            <div>
-              <span class="text-text-muted"># Clone and build</span>
-            </div>
-            <div>
-              <span class="text-text-muted">$</span> <span class="text-cyan-accent">git clone https://github.com/peaktwilight/whatdiditdo</span>
-            </div>
-            <div>
-              <span class="text-text-muted">$</span> <span class="text-cyan-accent">cd whatdiditdo && npm install && npm run build</span>
-            </div>
-            <div class="mt-4">
-              <span class="text-text-muted"># Run in any git repo</span>
-            </div>
-            <div>
-              <span class="text-text-muted">$</span> <span class="text-cyan-accent">node dist/cli.js</span>
-            </div>
-            <div class="mt-4">
-              <span class="text-text-muted"># Skip AI summary (faster)</span>
-            </div>
-            <div>
-              <span class="text-text-muted">$</span> <span class="text-cyan-accent">node dist/cli.js --no-ai</span>
-            </div>
-            <div class="mt-4">
-              <span class="text-text-muted"># Save markdown report</span>
-            </div>
-            <div>
-              <span class="text-text-muted">$</span> <span class="text-cyan-accent">node dist/cli.js --md</span>
-            </div>
-          </div>
+          <button
+            id="copy-btn"
+            class="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono text-text-muted hover:text-text-primary bg-bg-tertiary hover:bg-border border border-border rounded-md transition-all duration-200"
+            aria-label="Copy to clipboard"
+          >
+            <Copy class="w-3.5 h-3.5 copy-icon" />
+            <Check class="w-3.5 h-3.5 check-icon hidden" />
+            <span class="copy-label">Copy</span>
+          </button>
         </div>
+
+        <p class="text-text-muted text-xs mt-4 font-mono">Requires Node.js 18+ &middot; Claude CLI optional (--no-ai works without it)</p>
       </div>
     </section>
 
@@ -514,14 +485,10 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
     <script>
       // Copy button
       const copyBtn = document.getElementById('copy-btn');
-      const codeBlock = document.getElementById('code-block');
-      if (copyBtn && codeBlock) {
+      const installCmd = document.getElementById('install-cmd');
+      if (copyBtn && installCmd) {
         copyBtn.addEventListener('click', async () => {
-          const text = codeBlock.innerText
-            .split('\n')
-            .filter(line => line.startsWith('$'))
-            .map(line => line.replace(/^\$\s*/, ''))
-            .join('\n');
+          const text = installCmd.textContent || '';
           await navigator.clipboard.writeText(text);
           copyBtn.querySelector('.copy-icon')?.classList.add('hidden');
           copyBtn.querySelector('.check-icon')?.classList.remove('hidden');
