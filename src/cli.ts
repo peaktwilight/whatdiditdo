@@ -16,7 +16,7 @@ import { displayReport, displayNoChanges } from "./display.js";
 
 const noAi = process.argv.includes("--no-ai");
 
-async function main() {
+async function main(): Promise<void> {
   const cwd = process.cwd();
 
   if (!(await isGitRepo(cwd))) {
@@ -48,7 +48,7 @@ async function main() {
   const newDeps = detectNewDeps(parsedFiles);
   const securityFlags = scanSecurity(parsedFiles);
 
-  let summary = null;
+  let summary: string | null = null;
   if (!noAi && combinedDiff) {
     spinner.text = "Asking Claude for a summary...";
     summary = await summarize(combinedDiff, log);
@@ -68,7 +68,7 @@ async function main() {
   });
 }
 
-main().catch((err) => {
+main().catch((err: Error) => {
   console.error("Fatal error:", err.message);
   process.exit(1);
 });

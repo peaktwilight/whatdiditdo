@@ -3,20 +3,36 @@ import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
 
-async function run(cmd, args, cwd) {
+export interface FileChange {
+  file: string;
+  isNew: boolean;
+  isDeleted: boolean;
+  added: number;
+  removed: number;
+  addedLines: string[];
+}
+
+export interface SecurityFlag {
+  file: string;
+  line: number | null;
+  msg: string;
+}
+
+async function run(cmd: string, args: string[], cwd: string): Promise<string> {
   try {
     const { stdout } = await execFileAsync(cmd, args, {
       cwd,
       maxBuffer: 10 * 1024 * 1024,
     });
     return stdout;
-  } catch (err) {
-    if (err.stdout !== undefined) return err.stdout;
+  } catch (err: unknown) {
+    const e = err as { stdout?: string };
+    if (e.stdout !== undefined) return e.stdout;
     throw err;
   }
 }
 
-export async function isGitRepo(cwd) {
+export async function isGitRepo(cwd: string): Promise<boolean> {
   try {
     await run("git", ["rev-parse", "--is-inside-work-tree"], cwd);
     return true;
@@ -25,23 +41,23 @@ export async function isGitRepo(cwd) {
   }
 }
 
-export async function getDiffHead(cwd) {
+export async function getDiffHead(cwd: string): Promise<string> {
   return run("git", ["diff", "HEAD"], cwd);
 }
 
-export async function getDiffCached(cwd) {
+export async function getDiffCached(cwd: string): Promise<string> {
   return run("git", ["diff", "--cached"], cwd);
 }
 
-export async function getLog(cwd) {
+export async function getLog(cwd: string): Promise<string> {
   return run("git", ["log", "--oneline", "-20"], cwd);
 }
 
-export async function getDiffStat(cwd) {
+export async function getDiffStat(cwd: string): Promise<string> {
   return run("git", ["diff", "HEAD", "--stat"], cwd);
 }
 
-export async function getUntrackedFiles(cwd) {
+export async function getUntrackedFiles(cwd: string): Promise<string[]> {
   const out = await run(
     "git",
     ["ls-files", "--others", "--exclude-standard"],
@@ -56,8 +72,8 @@ export async function getUntrackedFiles(cwd) {
 /**
  * Parse a unified diff string into structured file change info.
  */
-export function parseDiff(diffText) {
-  const files = [];
+export function parseDiff(diffText: string): FileChange[] {
+  const files: FileChange[] = [];
   if (!diffText || !diffText.trim()) return files;
 
   const fileSections = diffText.split(/^diff --git /m).filter(Boolean);
@@ -77,7 +93,7 @@ export function parseDiff(diffText) {
 
     let added = 0;
     let removed = 0;
-    const addedLines = [];
+    const addedLines: string[] = [];
 
     for (const line of lines) {
       if (line.startsWith("+") && !line.startsWith("+++")) {
@@ -104,13 +120,12 @@ export function parseDiff(diffText) {
 /**
  * Detect new dependencies from package.json changes in the diff.
  */
-export function detectNewDeps(parsedFiles) {
-  const deps = [];
+export function detectNewDeps(parsedFiles: FileChange[]): string[] {
+  const deps: string[] = [];
   const pkgFile = parsedFiles.find((f) => f.file === "package.json");
   if (!pkgFile) return deps;
 
   for (const line of pkgFile.addedLines) {
-    // Match lines like:  "express": "^4.18.0"
     const m = line.match(/^\s*"([^"]+)"\s*:\s*"[\^~]?[\d.]/);
     if (m && m[1] !== "name" && m[1] !== "version" && m[1] !== "description") {
       deps.push(m[1]);
@@ -122,10 +137,10 @@ export function detectNewDeps(parsedFiles) {
 /**
  * Scan added lines for potential security issues.
  */
-export function scanSecurity(parsedFiles) {
-  const flags = [];
+export function scanSecurity(parsedFiles: FileChange[]): SecurityFlag[] {
+  const flags: SecurityFlag[] = [];
 
-  const patterns = [
+  const patterns: Array<{ regex: RegExp; msg: string }> = [
     {
       regex:
         /(?:api[_-]?key|token|secret|password|passwd|credentials)\s*[:=]\s*["'][A-Za-z0-9_\-/.+]{16,}["']/i,
@@ -142,7 +157,6 @@ export function scanSecurity(parsedFiles) {
   ];
 
   for (const pf of parsedFiles) {
-    // Flag any .env file modification
     if (pf.file.match(/\.env($|\.)/)) {
       flags.push({ file: pf.file, line: null, msg: "check for committed secrets" });
     }

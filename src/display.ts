@@ -1,15 +1,27 @@
 import chalk from "chalk";
+import type { FileChange, SecurityFlag } from "./git.js";
 
-const LINE = "─".repeat(54);
+const LINE = "\u2500".repeat(54);
 
-function header() {
+export interface ReportData {
+  parsedFiles: FileChange[];
+  untrackedFiles: string[];
+  totalAdded: number;
+  totalRemoved: number;
+  newDeps: string[];
+  securityFlags: SecurityFlag[];
+  summary: string | null;
+  noAi: boolean;
+}
+
+function header(): void {
   console.log();
   console.log(chalk.dim(LINE));
-  console.log(chalk.bold("  WHATDIDITDO") + chalk.dim("  —  your AI session recap"));
+  console.log(chalk.bold("  WHATDIDITDO") + chalk.dim("  \u2014  your AI session recap"));
   console.log(chalk.dim(LINE));
 }
 
-function section(title) {
+function section(title: string): void {
   console.log();
   console.log(chalk.dim(LINE));
   console.log();
@@ -17,7 +29,7 @@ function section(title) {
   console.log();
 }
 
-function footer() {
+function footer(): void {
   console.log();
   console.log(chalk.dim(LINE));
   console.log();
@@ -32,7 +44,7 @@ export function displayReport({
   securityFlags,
   summary,
   noAi,
-}) {
+}: ReportData): void {
   header();
 
   // FILES CHANGED
@@ -41,22 +53,22 @@ export function displayReport({
   for (const f of parsedFiles) {
     if (f.isNew) {
       console.log(
-        `  ${chalk.green("✚")} ${chalk.green(f.file)}  ${chalk.dim(`(new, ${f.added} lines)`)}`
+        `  ${chalk.green("\u271A")} ${chalk.green(f.file)}  ${chalk.dim(`(new, ${f.added} lines)`)}`
       );
     } else if (f.isDeleted) {
       console.log(
-        `  ${chalk.red("✖")} ${chalk.red(f.file)}  ${chalk.dim("(deleted)")}`
+        `  ${chalk.red("\u2716")} ${chalk.red(f.file)}  ${chalk.dim("(deleted)")}`
       );
     } else {
       console.log(
-        `  ${chalk.yellow("✎")} ${f.file}  ${chalk.dim(`(${chalk.green("+" + f.added)} ${chalk.red("-" + f.removed)})`)}`
+        `  ${chalk.yellow("\u270E")} ${f.file}  ${chalk.dim(`(${chalk.green("+" + f.added)} ${chalk.red("-" + f.removed)})`)}`
       );
     }
   }
 
   for (const f of untrackedFiles) {
     console.log(
-      `  ${chalk.green("✚")} ${chalk.green(f)}  ${chalk.dim("(untracked)")}`
+      `  ${chalk.green("\u271A")} ${chalk.green(f)}  ${chalk.dim("(untracked)")}`
     );
   }
 
@@ -110,7 +122,7 @@ export function displayReport({
   footer();
 }
 
-export function displayNoChanges() {
+export function displayNoChanges(): void {
   header();
   console.log();
   console.log(chalk.dim("  No changes detected. Your repo is clean!"));

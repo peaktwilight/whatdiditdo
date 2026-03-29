@@ -4,11 +4,19 @@
   "description": "See what your AI coding agent actually did. One command after any AI session.",
   "type": "module",
   "bin": {
-    "whatdiditdo": "./src/cli.js"
+    "whatdiditdo": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "license": "MIT",
   "dependencies": {
     "chalk": "^5.3.0",
     "ora": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^6.0.2"
   }
 }

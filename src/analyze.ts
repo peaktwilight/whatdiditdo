@@ -9,7 +9,7 @@ const CLAUDE_BIN = "/Users/peak/.local/bin/claude";
  * Send the diff to the claude CLI for a plain-english summary.
  * Returns the summary string or null on failure.
  */
-export async function summarize(diff, log) {
+export async function summarize(diff: string, log: string): Promise<string | null> {
   const prompt = `You are reviewing a git diff from an AI coding session. Summarize what changed in 2-4 concise sentences for a developer who wants to quickly understand what the AI did. Focus on the "what" and "why", not line-by-line details. Be direct and specific.
 
 Here is the recent git log for context:
@@ -28,9 +28,9 @@ ${diff.slice(0, 80000)}`;
       }
     );
 
-    const parsed = JSON.parse(stdout);
+    const parsed = JSON.parse(stdout) as { result?: string };
     return parsed.result || null;
-  } catch (err) {
+  } catch {
     return null;
   }
 }
