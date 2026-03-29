@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTriangle, Eye, Copy, Check, ChevronDown, Zap, Lock, RotateCcw, ArrowRight } from 'lucide-astro';
 ---
 
 <html lang="en">
@@ -43,7 +44,7 @@ import '../styles/global.css';
           <span class="text-cyan-accent">what</span><span class="text-text-primary">did</span><span class="text-text-secondary">it</span><span class="text-text-primary">do</span>
         </a>
         <a href="https://github.com/peaktwilight/whatdiditdo" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-cyan-accent transition-colors" aria-label="GitHub">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <Github class="w-6 h-6" />
         </a>
       </div>
     </nav>
@@ -57,7 +58,7 @@ import '../styles/global.css';
 
       <div class="relative z-10 max-w-4xl w-full text-center">
         <h1 class="font-mono text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 fade-in">
-          <span class="text-cyan-accent">what</span><span class="text-text-primary">did</span><span class="text-text-secondary">it</span><span class="text-text-primary">do</span>
+          <span class="hero-gradient-cyan">what</span><span class="text-text-primary">did</span><span class="text-text-secondary">it</span><span class="text-text-primary">do</span>
         </h1>
 
         <p class="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto mb-4 fade-in" style="animation-delay: 0.2s">
@@ -66,23 +67,25 @@ import '../styles/global.css';
         </p>
 
         <!-- Stats counter -->
-        <div class="flex gap-8 justify-center mt-8 mb-12 fade-in" style="animation-delay: 0.3s">
-          <div class="text-center">
-            <div class="font-mono text-2xl font-bold text-cyan-accent">47M+</div>
-            <div class="text-xs text-text-muted">lines analyzed</div>
+        <div class="flex items-center justify-center gap-0 mt-8 mb-12 fade-in" style="animation-delay: 0.3s">
+          <div class="text-center px-6 sm:px-8">
+            <div class="font-mono text-2xl sm:text-3xl font-bold text-cyan-accent stat-number" data-target="47">47M+</div>
+            <div class="text-xs text-text-muted mt-1">lines analyzed</div>
           </div>
-          <div class="text-center">
-            <div class="font-mono text-2xl font-bold text-red-400">2,341</div>
-            <div class="text-xs text-text-muted">secrets caught</div>
+          <div class="w-px h-12 bg-border"></div>
+          <div class="text-center px-6 sm:px-8">
+            <div class="font-mono text-2xl sm:text-3xl font-bold text-red-400 stat-number" data-target="2341">2,341</div>
+            <div class="text-xs text-text-muted mt-1">secrets caught</div>
           </div>
-          <div class="text-center">
-            <div class="font-mono text-2xl font-bold text-green-400">&infin;</div>
-            <div class="text-xs text-text-muted">trust issues</div>
+          <div class="w-px h-12 bg-border"></div>
+          <div class="text-center px-6 sm:px-8">
+            <div class="font-mono text-3xl sm:text-4xl font-bold text-red-400">&infin;</div>
+            <div class="text-xs text-text-muted mt-1">trust issues</div>
           </div>
         </div>
 
         <!-- Terminal -->
-        <div class="glow-border bg-bg-secondary border border-border rounded-xl overflow-hidden max-w-3xl mx-auto text-left mb-10 fade-in" style="animation-delay: 0.4s">
+        <div class="glow-border bg-bg-secondary border border-border rounded-xl overflow-hidden max-w-3xl mx-auto text-left mb-10 fade-in relative" style="animation-delay: 0.4s">
           <!-- Title bar -->
           <div class="flex items-center gap-2 px-4 py-3 bg-bg-tertiary border-b border-border">
             <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
@@ -143,7 +146,7 @@ import '../styles/global.css';
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 px-8 py-3.5 bg-cyan-accent hover:bg-cyan-accent-dark text-bg-primary font-semibold rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
           >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            <Github class="w-5 h-5" />
             View on GitHub
           </a>
           <p class="text-text-secondary font-mono text-sm mt-4">
@@ -155,35 +158,42 @@ import '../styles/global.css';
 
       <!-- Scroll indicator -->
       <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+        <ChevronDown class="w-5 h-5 text-text-muted" />
       </div>
     </section>
 
     <!-- ===== THE PROBLEM ===== -->
-    <section class="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
-      <div class="max-w-6xl mx-auto">
+    <section class="py-24 sm:py-32 px-4 sm:px-6 border-t border-border relative overflow-hidden">
+      <!-- Subtle danger gradient background -->
+      <div class="absolute inset-0 bg-gradient-to-b from-red-950/10 via-amber-950/5 to-transparent pointer-events-none"></div>
+
+      <div class="max-w-6xl mx-auto relative z-10">
         <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">
-          The <span class="text-cyan-accent">problem</span>
+          The <span class="text-red-400">problem</span>
         </h2>
-        <p class="text-text-secondary text-center max-w-xl mx-auto mb-16">
-          AI agents are powerful. But they move fast and break things.
+        <p class="text-text-secondary text-center max-w-xl mx-auto mb-16 text-lg">
+          AI agents are powerful. But they move fast and <span class="text-red-400 font-medium">break things</span>.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-red-400/30 transition-all duration-300">
-            <span class="text-3xl block mb-4">&#129327;</span>
+          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-orange-400/40 transition-all duration-300 border-l-4 border-l-orange-400">
+            <div class="w-14 h-14 rounded-xl bg-orange-400/10 flex items-center justify-center mb-5">
+              <AlertTriangle class="w-7 h-7 text-orange-400" />
+            </div>
             <h3 class="text-xl font-semibold mb-2">40 files changed</h3>
             <p class="text-text-secondary leading-relaxed">Your AI agent touched half the codebase. Good luck reviewing that manually.</p>
           </div>
-          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-red-400/30 transition-all duration-300">
-            <span class="text-3xl block mb-4">&#128275;</span>
+          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-red-400/40 transition-all duration-300 border-l-4 border-l-red-400">
+            <div class="w-14 h-14 rounded-xl bg-red-400/10 flex items-center justify-center mb-5">
+              <Lock class="w-7 h-7 text-red-400" />
+            </div>
             <h3 class="text-xl font-semibold mb-2">Secrets leaked</h3>
             <p class="text-text-secondary leading-relaxed">It added your API key to a config file. You didn't notice until production.</p>
           </div>
-          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-red-400/30 transition-all duration-300">
-            <span class="text-3xl block mb-4">&#8617;&#65039;</span>
+          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-amber-400/40 transition-all duration-300 border-l-4 border-l-amber-400">
+            <div class="w-14 h-14 rounded-xl bg-amber-400/10 flex items-center justify-center mb-5">
+              <RotateCcw class="w-7 h-7 text-amber-400" />
+            </div>
             <h3 class="text-xl font-semibold mb-2">Silent reverts</h3>
             <p class="text-text-secondary leading-relaxed">Cursor silently reverted your changes. Your code from yesterday? Gone.</p>
           </div>
@@ -205,9 +215,7 @@ import '../styles/global.css';
           <!-- File Tracking -->
           <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
             <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
-              <svg class="w-6 h-6 text-cyan-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+              <FileText class="w-6 h-6 text-cyan-accent" />
             </div>
             <h3 class="text-xl font-semibold mb-2">File Tracking</h3>
             <p class="text-text-secondary leading-relaxed">Every add, edit, and delete with exact line counts. Know exactly which files were created, modified, or removed.</p>
@@ -216,9 +224,7 @@ import '../styles/global.css';
           <!-- AI Summary -->
           <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
             <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
-              <svg class="w-6 h-6 text-cyan-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
+              <Brain class="w-6 h-6 text-cyan-accent" />
             </div>
             <h3 class="text-xl font-semibold mb-2">AI Summary</h3>
             <p class="text-text-secondary leading-relaxed">Plain-English explanation of what changed and why, powered by Claude. Understand the intent, not just the diff.</p>
@@ -227,9 +233,7 @@ import '../styles/global.css';
           <!-- Security Scanner -->
           <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
             <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
-              <svg class="w-6 h-6 text-cyan-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
+              <Shield class="w-6 h-6 text-cyan-accent" />
             </div>
             <h3 class="text-xl font-semibold mb-2">Security Scanner</h3>
             <p class="text-text-secondary leading-relaxed">Automatically catches hardcoded secrets, API keys, and credentials before they hit your repo.</p>
@@ -238,9 +242,7 @@ import '../styles/global.css';
           <!-- Shareable Reports -->
           <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
             <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
-              <svg class="w-6 h-6 text-cyan-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-              </svg>
+              <Share2 class="w-6 h-6 text-cyan-accent" />
             </div>
             <h3 class="text-xl font-semibold mb-2">Shareable Reports</h3>
             <p class="text-text-secondary leading-relaxed">Export as markdown for PRs and Slack. Share a link so your team knows what the AI built.</p>
@@ -259,30 +261,48 @@ import '../styles/global.css';
           If it uses git, whatdiditdo can track it.
         </p>
 
-        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
-          <div class="flex flex-col items-center gap-3 px-6 py-5 bg-bg-secondary border border-border rounded-xl min-w-[140px] hover:border-cyan-accent/30 transition-colors">
-            <span class="text-2xl">&#129302;</span>
+        <div class="works-with-grid">
+          <div class="works-with-item">
+            <div class="w-10 h-10 rounded-lg bg-bg-tertiary flex items-center justify-center">
+              <Terminal class="w-5 h-5 text-cyan-accent" />
+            </div>
             <span class="font-mono text-sm text-text-primary font-medium">Claude Code</span>
           </div>
-          <div class="flex flex-col items-center gap-3 px-6 py-5 bg-bg-secondary border border-border rounded-xl min-w-[140px] hover:border-cyan-accent/30 transition-colors">
-            <span class="text-2xl">&#9000;&#65039;</span>
+          <div class="works-with-connector"></div>
+          <div class="works-with-item">
+            <div class="w-10 h-10 rounded-lg bg-bg-tertiary flex items-center justify-center">
+              <Eye class="w-5 h-5 text-cyan-accent" />
+            </div>
             <span class="font-mono text-sm text-text-primary font-medium">Cursor</span>
           </div>
-          <div class="flex flex-col items-center gap-3 px-6 py-5 bg-bg-secondary border border-border rounded-xl min-w-[140px] hover:border-cyan-accent/30 transition-colors">
-            <svg class="w-7 h-7 text-text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <div class="works-with-connector"></div>
+          <div class="works-with-item">
+            <div class="w-10 h-10 rounded-lg bg-bg-tertiary flex items-center justify-center">
+              <Github class="w-5 h-5 text-cyan-accent" />
+            </div>
             <span class="font-mono text-sm text-text-primary font-medium">Copilot</span>
           </div>
-          <div class="flex flex-col items-center gap-3 px-6 py-5 bg-bg-secondary border border-border rounded-xl min-w-[140px] hover:border-cyan-accent/30 transition-colors">
-            <span class="text-2xl">&#9997;&#65039;</span>
+          <div class="works-with-connector"></div>
+          <div class="works-with-item">
+            <div class="w-10 h-10 rounded-lg bg-bg-tertiary flex items-center justify-center">
+              <GitBranch class="w-5 h-5 text-cyan-accent" />
+            </div>
             <span class="font-mono text-sm text-text-primary font-medium">Aider</span>
           </div>
-          <div class="flex flex-col items-center gap-3 px-6 py-5 bg-bg-secondary border border-border rounded-xl min-w-[140px] hover:border-cyan-accent/30 transition-colors">
-            <span class="text-2xl">&#127754;</span>
+          <div class="works-with-connector"></div>
+          <div class="works-with-item">
+            <div class="w-10 h-10 rounded-lg bg-bg-tertiary flex items-center justify-center">
+              <Zap class="w-5 h-5 text-cyan-accent" />
+            </div>
             <span class="font-mono text-sm text-text-primary font-medium">Windsurf</span>
           </div>
         </div>
 
-        <p class="text-text-muted text-sm mt-8 font-mono">...and any tool that uses git</p>
+        <!-- + any tool that uses git -->
+        <div class="mt-8 inline-flex items-center gap-3 px-6 py-3 bg-cyan-accent/5 border border-cyan-accent/20 rounded-full">
+          <ArrowRight class="w-4 h-4 text-cyan-accent" />
+          <span class="font-mono text-sm text-cyan-accent font-medium">+ any tool that uses git</span>
+        </div>
       </div>
     </section>
 
@@ -296,14 +316,25 @@ import '../styles/global.css';
           Clone, build, run. That's it.
         </p>
 
-        <div class="bg-bg-secondary border border-border rounded-xl overflow-hidden">
-          <div class="flex items-center gap-2 px-4 py-3 bg-bg-tertiary border-b border-border">
-            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-            <span class="ml-2 text-xs text-text-muted font-mono">terminal</span>
+        <div class="bg-bg-secondary border border-border rounded-xl overflow-hidden relative group">
+          <div class="flex items-center justify-between px-4 py-3 bg-bg-tertiary border-b border-border">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+              <span class="ml-2 text-xs text-text-muted font-mono">terminal</span>
+            </div>
+            <button
+              id="copy-btn"
+              class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono text-text-muted hover:text-text-primary bg-bg-secondary hover:bg-bg-tertiary border border-border rounded-md transition-all duration-200"
+              aria-label="Copy to clipboard"
+            >
+              <Copy class="w-3.5 h-3.5 copy-icon" />
+              <Check class="w-3.5 h-3.5 check-icon hidden" />
+              <span class="copy-label">Copy</span>
+            </button>
           </div>
-          <div class="p-6 font-mono text-sm leading-loose">
+          <div id="code-block" class="p-6 font-mono text-sm leading-loose">
             <div>
               <span class="text-text-muted"># Clone and build</span>
             </div>
@@ -359,30 +390,110 @@ import '../styles/global.css';
 
     <!-- ===== FOOTER ===== -->
     <footer class="py-16 px-4 sm:px-6 border-t border-border">
-      <div class="max-w-4xl mx-auto text-center">
-        <p class="text-xl sm:text-2xl font-semibold mb-6">
-          Stop blindly trusting your AI agent.
-        </p>
-        <a
-          href="https://github.com/peaktwilight/whatdiditdo"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-cyan-accent hover:text-cyan-accent-dark font-mono text-sm transition-colors"
-        >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          peaktwilight/whatdiditdo
-        </a>
-        <p class="text-text-muted text-xs mt-8 font-mono">
-          Built for developers who want to know what happened.
-        </p>
-        <div class="mt-6 flex items-center justify-center gap-3 text-text-muted text-xs font-mono">
-          <span>Made by</span>
-          <a href="https://github.com/peaktwilight" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-cyan-accent transition-colors">@peaktwilight</a>
-          <span>&middot;</span>
-          <a href="https://doruk.ch" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-cyan-accent transition-colors">doruk.ch</a>
+      <div class="max-w-4xl mx-auto">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+          <!-- Left: logo + tagline -->
+          <div>
+            <a href="/" class="font-mono text-lg font-bold tracking-tight">
+              <span class="text-cyan-accent">what</span><span class="text-text-primary">did</span><span class="text-text-secondary">it</span><span class="text-text-primary">do</span>
+            </a>
+            <p class="text-text-muted text-sm mt-2 max-w-xs">
+              Stop blindly trusting your AI agent. See what it actually changed.
+            </p>
+          </div>
+          <!-- Right: links -->
+          <div class="flex flex-col gap-3 text-sm">
+            <a
+              href="https://github.com/peaktwilight/whatdiditdo"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-text-secondary hover:text-cyan-accent transition-colors"
+            >
+              <Github class="w-4 h-4" />
+              peaktwilight/whatdiditdo
+            </a>
+            <div class="flex items-center gap-3 text-text-muted text-xs font-mono">
+              <span>Made by</span>
+              <a href="https://github.com/peaktwilight" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-cyan-accent transition-colors">@peaktwilight</a>
+              <span>&middot;</span>
+              <a href="https://doruk.ch" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-cyan-accent transition-colors">doruk.ch</a>
+            </div>
+            <span class="text-text-muted text-xs font-mono">Free & open source &middot; MIT License</span>
+          </div>
         </div>
       </div>
     </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+      // Copy button
+      const copyBtn = document.getElementById('copy-btn');
+      const codeBlock = document.getElementById('code-block');
+      if (copyBtn && codeBlock) {
+        copyBtn.addEventListener('click', async () => {
+          const text = codeBlock.innerText
+            .split('\n')
+            .filter(line => line.startsWith('$'))
+            .map(line => line.replace(/^\$\s*/, ''))
+            .join('\n');
+          await navigator.clipboard.writeText(text);
+          copyBtn.querySelector('.copy-icon')?.classList.add('hidden');
+          copyBtn.querySelector('.check-icon')?.classList.remove('hidden');
+          const label = copyBtn.querySelector('.copy-label');
+          if (label) label.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtn.querySelector('.copy-icon')?.classList.remove('hidden');
+            copyBtn.querySelector('.check-icon')?.classList.add('hidden');
+            if (label) label.textContent = 'Copy';
+          }, 2000);
+        });
+      }
+
+      // Stat counter animation on scroll
+      const animateCounters = () => {
+        const stats = document.querySelectorAll('.stat-number');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const finalText = el.textContent || '';
+              const target = parseInt(el.dataset.target || '0');
+              if (target === 0) return;
+
+              let current = 0;
+              const duration = 1500;
+              const steps = 40;
+              const increment = target / steps;
+              const stepTime = duration / steps;
+
+              const suffix = finalText.includes('M') ? 'M+' : '';
+              const useComma = finalText.includes(',');
+
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                  el.textContent = finalText;
+                  clearInterval(timer);
+                } else {
+                  const val = Math.floor(current);
+                  if (useComma) {
+                    el.textContent = val.toLocaleString();
+                  } else {
+                    el.textContent = val + suffix;
+                  }
+                }
+              }, stepTime);
+
+              observer.unobserve(el);
+            }
+          });
+        }, { threshold: 0.5 });
+
+        stats.forEach(stat => observer.observe(stat));
+      };
+
+      animateCounters();
+    </script>
 
   </body>
 </html>
