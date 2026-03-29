@@ -69,17 +69,17 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
         <!-- Stats counter -->
         <div class="flex items-center justify-center gap-0 mt-8 mb-12 fade-in" style="animation-delay: 0.3s">
           <div class="text-center px-6 sm:px-8">
-            <div class="font-mono text-2xl sm:text-3xl font-bold text-cyan-accent stat-number" data-target="47">47M+</div>
+            <div class="font-mono text-xl sm:text-3xl font-bold text-cyan-accent stat-number" data-target="47">47M+</div>
             <div class="text-xs text-text-muted mt-1">lines analyzed</div>
           </div>
           <div class="w-px h-12 bg-border"></div>
           <div class="text-center px-6 sm:px-8">
-            <div class="font-mono text-2xl sm:text-3xl font-bold text-red-400 stat-number" data-target="2341">2,341</div>
+            <div class="font-mono text-xl sm:text-3xl font-bold text-red-400 stat-number" data-target="2341">2,341</div>
             <div class="text-xs text-text-muted mt-1">secrets caught</div>
           </div>
           <div class="w-px h-12 bg-border"></div>
           <div class="text-center px-6 sm:px-8">
-            <div class="font-mono text-3xl sm:text-4xl font-bold text-red-400">&infin;</div>
+            <div class="font-mono text-xl sm:text-4xl font-bold text-red-400">&infin;</div>
             <div class="text-xs text-text-muted mt-1">trust issues</div>
           </div>
         </div>
@@ -94,7 +94,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
             <span class="ml-2 text-xs text-text-muted font-mono">whatdiditdo</span>
           </div>
           <!-- Terminal content -->
-          <div class="p-4 sm:p-6 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto">
+          <div class="p-3 sm:p-6 font-mono text-[11px] sm:text-sm leading-relaxed overflow-x-hidden break-words">
             <div class="terminal-line">
               <span class="text-text-muted">$</span> <span class="text-cyan-accent">whatdiditdo</span><span class="terminal-cursor text-cyan-accent">_</span>
             </div>
@@ -176,21 +176,21 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-orange-400/40 transition-all duration-300 border-l-4 border-l-orange-400">
+          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-orange-400/40 hover:scale-[1.02] hover:shadow-lg hover:shadow-orange-400/10 transition-all duration-300 border-l-4 border-l-orange-400">
             <div class="w-14 h-14 rounded-xl bg-orange-400/10 flex items-center justify-center mb-5">
               <AlertTriangle class="w-7 h-7 text-orange-400" />
             </div>
             <h3 class="text-xl font-semibold mb-2">40 files changed</h3>
             <p class="text-text-secondary leading-relaxed">Your AI agent touched half the codebase. Good luck reviewing that manually.</p>
           </div>
-          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-red-400/40 transition-all duration-300 border-l-4 border-l-red-400">
+          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-red-400/40 hover:scale-[1.02] hover:shadow-lg hover:shadow-red-400/10 transition-all duration-300 border-l-4 border-l-red-400">
             <div class="w-14 h-14 rounded-xl bg-red-400/10 flex items-center justify-center mb-5">
               <Lock class="w-7 h-7 text-red-400" />
             </div>
             <h3 class="text-xl font-semibold mb-2">Secrets leaked</h3>
             <p class="text-text-secondary leading-relaxed">It added your API key to a config file. You didn't notice until production.</p>
           </div>
-          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-amber-400/40 transition-all duration-300 border-l-4 border-l-amber-400">
+          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-amber-400/40 hover:scale-[1.02] hover:shadow-lg hover:shadow-amber-400/10 transition-all duration-300 border-l-4 border-l-amber-400">
             <div class="w-14 h-14 rounded-xl bg-amber-400/10 flex items-center justify-center mb-5">
               <RotateCcw class="w-7 h-7 text-amber-400" />
             </div>
@@ -213,7 +213,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <!-- File Tracking -->
-          <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
+          <div class="group bg-bg-secondary border border-border border-t-2 border-t-transparent hover:border-t-cyan-accent rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
             <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
               <FileText class="w-6 h-6 text-cyan-accent" />
             </div>
@@ -222,7 +222,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
           </div>
 
           <!-- AI Summary -->
-          <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
+          <div class="group bg-bg-secondary border border-border border-t-2 border-t-transparent hover:border-t-cyan-accent rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
             <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
               <Brain class="w-6 h-6 text-cyan-accent" />
             </div>
@@ -231,7 +231,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
           </div>
 
           <!-- Security Scanner -->
-          <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
+          <div class="group bg-bg-secondary border border-border border-t-2 border-t-transparent hover:border-t-cyan-accent rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
             <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
               <Shield class="w-6 h-6 text-cyan-accent" />
             </div>
@@ -240,7 +240,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
           </div>
 
           <!-- Shareable Reports -->
-          <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
+          <div class="group bg-bg-secondary border border-border border-t-2 border-t-transparent hover:border-t-cyan-accent rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
             <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
               <Share2 class="w-6 h-6 text-cyan-accent" />
             </div>
