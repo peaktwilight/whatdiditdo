@@ -20,14 +20,6 @@ npx whatdiditdo
 
 That's it. No install needed.
 
-### Development
-
-```bash
-npx whatdiditdo
-```
-
-That's it. Run it in any git repo after an AI session.
-
 ## What you get
 
 - **Files changed** — added, modified, deleted with line counts
@@ -63,6 +55,14 @@ Pipe it: `npx whatdiditdo --pr --no-ai | pbcopy`
 | `npx whatdiditdo --md` | Save markdown report |
 | `npx whatdiditdo --last N` | Review the last N commits |
 | `npx whatdiditdo --json` | Machine-readable JSON output |
+| `npx whatdiditdo --hook` | Install as post-commit git hook |
+| `npx whatdiditdo --unhook` | Remove the post-commit git hook |
+| `npx whatdiditdo --blame-agent` | Detect which AI tool made the changes |
+| `npx whatdiditdo --undo` | List changed files for selective rollback |
+| `npx whatdiditdo --undo <N>` | Revert a specific file by number |
+| `npx whatdiditdo --undo all` | Revert all changes |
+| `npx whatdiditdo --notify <url>` | Send summary to Slack/Discord webhook |
+| `npx whatdiditdo --web` | Open an HTML report in the browser |
 
 ## Review past commits
 
