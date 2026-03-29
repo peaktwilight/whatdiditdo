@@ -400,6 +400,80 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
       </div>
     </section>
 
+    <!-- ===== FAQ ===== -->
+    <section class="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">
+          Frequently asked <span class="text-cyan-accent">questions</span>
+        </h2>
+        <p class="text-text-secondary text-center max-w-lg mx-auto mb-12">
+          Everything you need to know.
+        </p>
+
+        <div class="space-y-4">
+          <details class="group bg-bg-secondary border border-border rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none text-text-primary font-semibold hover:text-cyan-accent transition-colors">
+              Is this free?
+              <ChevronDown class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200" />
+            </summary>
+            <div class="px-6 pb-5 text-text-secondary leading-relaxed">
+              Yes. Open source, MIT licensed, free forever.
+            </div>
+          </details>
+
+          <details class="group bg-bg-secondary border border-border rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none text-text-primary font-semibold hover:text-cyan-accent transition-colors">
+              Does it send my code anywhere?
+              <ChevronDown class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200" />
+            </summary>
+            <div class="px-6 pb-5 text-text-secondary leading-relaxed">
+              The diff is sent to Claude (via your local CLI) for the AI summary. Use <code class="font-mono text-cyan-accent text-sm bg-bg-tertiary px-1.5 py-0.5 rounded">--no-ai</code> to skip this entirely &mdash; it still shows file changes, stats, and security flags with zero network calls.
+            </div>
+          </details>
+
+          <details class="group bg-bg-secondary border border-border rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none text-text-primary font-semibold hover:text-cyan-accent transition-colors">
+              What AI tools does it work with?
+              <ChevronDown class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200" />
+            </summary>
+            <div class="px-6 pb-5 text-text-secondary leading-relaxed">
+              Anything that uses git. Claude Code, Cursor, GitHub Copilot, Aider, Windsurf, Cody, or even manual coding sessions.
+            </div>
+          </details>
+
+          <details class="group bg-bg-secondary border border-border rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none text-text-primary font-semibold hover:text-cyan-accent transition-colors">
+              Can I use it in CI/CD?
+              <ChevronDown class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200" />
+            </summary>
+            <div class="px-6 pb-5 text-text-secondary leading-relaxed">
+              Yes &mdash; use <code class="font-mono text-cyan-accent text-sm bg-bg-tertiary px-1.5 py-0.5 rounded">--json</code> for machine-readable output. Use <code class="font-mono text-cyan-accent text-sm bg-bg-tertiary px-1.5 py-0.5 rounded">--no-ai</code> in CI to avoid Claude dependency.
+            </div>
+          </details>
+
+          <details class="group bg-bg-secondary border border-border rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none text-text-primary font-semibold hover:text-cyan-accent transition-colors">
+              Does it catch all security issues?
+              <ChevronDown class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200" />
+            </summary>
+            <div class="px-6 pb-5 text-text-secondary leading-relaxed">
+              It catches common patterns (hardcoded keys, .env files, private keys). It's not a replacement for a proper security audit, but it catches the mistakes AI agents make most often.
+            </div>
+          </details>
+
+          <details class="group bg-bg-secondary border border-border rounded-xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-5 cursor-pointer select-none text-text-primary font-semibold hover:text-cyan-accent transition-colors">
+              What if there are no changes?
+              <ChevronDown class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200" />
+            </summary>
+            <div class="px-6 pb-5 text-text-secondary leading-relaxed">
+              It shows a friendly "No changes detected" message and exits cleanly.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== FOOTER ===== -->
     <footer class="py-16 px-4 sm:px-6 border-t border-border">
       <div class="max-w-4xl mx-auto">
