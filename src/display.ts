@@ -12,6 +12,8 @@ export interface ReportData {
   securityFlags: SecurityFlag[];
   summary: string | null;
   noAi: boolean;
+  detectedAgent?: string;
+  agentIcon?: string;
 }
 
 function header(): void {
@@ -44,8 +46,16 @@ export function displayReport({
   securityFlags,
   summary,
   noAi,
+  detectedAgent,
+  agentIcon,
 }: ReportData): void {
   header();
+
+  // DETECTED AGENT
+  if (detectedAgent) {
+    section("DETECTED AGENT");
+    console.log(`  ${agentIcon ?? "\uD83E\uDD16"}  ${chalk.bold(detectedAgent)}`);
+  }
 
   // FILES CHANGED
   section("FILES CHANGED");

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import ora from "ora";
+import { installHook, uninstallHook } from "./hook.js";
 import {
   isGitRepo,
   getDiffHead,
@@ -17,22 +18,129 @@ import { summarize } from "./analyze.js";
 import { displayReport, displayNoChanges, displayEmojiSummary } from "./display.js";
 import { saveMarkdownReport } from "./markdown.js";
 import { generatePRDescription } from "./pr.js";
+import { listChanges, undoFile, undoAll } from "./undo.js";
+import { detectAgent, getAgentIcon } from "./blame.js";
+import { sendNotification } from "./notify.js";
+import { openHtmlReport } from "./web.js";
 import chalk from "chalk";
 
+const hookMode = process.argv.includes("--hook");
+const unhookMode = process.argv.includes("--unhook");
 const noAi = process.argv.includes("--no-ai");
 const wantMd = process.argv.includes("--md");
 const wantJson = process.argv.includes("--json");
 const prMode = process.argv.includes("--pr");
+const blameMode = process.argv.includes("--blame-agent");
+const webMode = process.argv.includes("--web");
+
+const undoIdx = process.argv.indexOf("--undo");
+const undoMode = undoIdx !== -1;
+const undoArg = undoMode ? process.argv[undoIdx + 1] ?? null : null;
 
 const lastIdx = process.argv.indexOf("--last");
 const lastN = lastIdx !== -1 ? parseInt(process.argv[lastIdx + 1]) || 1 : 0;
 
+const notifyIdx = process.argv.indexOf("--notify");
+const webhookUrl = notifyIdx !== -1 ? process.argv[notifyIdx + 1] : null;
+
+async function handleUndo(cwd: string): Promise<void> {
+  const changes = await listChanges(cwd);
+
+  if (changes.length === 0) {
+    console.log(chalk.yellow("No changes found to undo."));
+    return;
+  }
+
+  // --undo all: revert everything
+  if (undoArg === "all") {
+    const source = changes[0].source;
+    if (source === "committed") {
+      await undoAll(cwd);
+      console.log(chalk.green("Reverted last commit via git revert."));
+    } else {
+      for (const change of changes) {
+        await undoFile(cwd, change.file, "uncommitted");
+      }
+      console.log(chalk.green(`Restored ${changes.length} file(s) to their last committed state.`));
+    }
+    return;
+  }
+
+  // --undo <number>: revert a specific file
+  if (undoArg !== null) {
+    const num = parseInt(undoArg);
+    if (isNaN(num) || num < 1 || num > changes.length) {
+      console.error(chalk.red(`Invalid selection: ${undoArg}. Choose a number between 1 and ${changes.length}.`));
+      process.exit(1);
+    }
+    const target = changes[num - 1];
+    await undoFile(cwd, target.file, target.source);
+    console.log(chalk.green(`Reverted: ${target.file}`));
+    return;
+  }
+
+  // --undo (no arg): list changes with numbers
+  const statusColors: Record<string, (s: string) => string> = {
+    new: chalk.green,
+    modified: chalk.yellow,
+    deleted: chalk.red,
+  };
+
+  console.log();
+  console.log(chalk.bold("  Changed files:"));
+  console.log();
+
+  for (let i = 0; i < changes.length; i++) {
+    const c = changes[i];
+    const colorFn = statusColors[c.status] ?? chalk.white;
+    const tag = colorFn(`[${c.status}]`);
+    console.log(`  ${chalk.bold(String(i + 1).padStart(3))}  ${tag}  ${c.file}`);
+    if (c.preview) {
+      console.log(`       ${chalk.dim(c.preview)}`);
+    }
+  }
+
+  console.log();
+  console.log(chalk.dim("  Run `whatdiditdo --undo <number>` to revert a specific file, or `whatdiditdo --undo all` to revert everything."));
+  console.log();
+}
+
 async function main(): Promise<void> {
   const cwd = process.cwd();
+
+  // Handle --hook / --unhook before anything else
+  if (hookMode) {
+    try {
+      installHook(cwd);
+      console.log(chalk.green("\u2714") + " Installed whatdiditdo as a post-commit hook.");
+      console.log(chalk.dim("  It will run `npx whatdiditdo --no-ai` after every commit."));
+    } catch (err: unknown) {
+      console.error(chalk.red("Error:"), (err as Error).message);
+      process.exit(1);
+    }
+    return;
+  }
+
+  if (unhookMode) {
+    try {
+      uninstallHook(cwd);
+      console.log(chalk.green("\u2714") + " Removed whatdiditdo post-commit hook.");
+    } catch (err: unknown) {
+      console.error(chalk.red("Error:"), (err as Error).message);
+      process.exit(1);
+    }
+    return;
+  }
 
   if (!(await isGitRepo(cwd))) {
     console.error("Error: not a git repository. Run whatdiditdo inside a git repo.");
     process.exit(1);
+  }
+
+  // Handle --undo mode
+  if (undoMode) {
+    await handleUndo(cwd);
+    return;
   }
 
   const spinner = wantJson ? null : ora("Gathering changes...").start();
@@ -149,12 +257,26 @@ async function main(): Promise<void> {
     return;
   }
 
+  if (webMode) {
+    await openHtmlReport(reportData, combinedDiff, cwd);
+    return;
+  }
+
   displayReport(reportData);
   displayEmojiSummary(reportData);
 
   if (wantMd) {
     const outPath = await saveMarkdownReport(reportData, cwd);
     console.log(`Report saved to ./${outPath.split("/").pop()}`);
+  }
+
+  if (webhookUrl) {
+    try {
+      await sendNotification(webhookUrl, reportData);
+      console.log(chalk.green("\u2714") + " Notification sent to webhook.");
+    } catch {
+      console.warn(chalk.yellow("\u26A0") + " Failed to send webhook notification.");
+    }
   }
 }
 
