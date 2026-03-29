@@ -1,28 +1,22 @@
 # whatdiditdo
 
+[![npm](https://img.shields.io/npm/v/whatdiditdo)](https://www.npmjs.com/package/whatdiditdo)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue.svg)
 
 > You let the AI cook. Now find out what it actually did.
 
-[whatdiditdo.doruk.ch](https://whatdiditdo.doruk.ch)
+[whatdiditdo.doruk.ch](https://whatdiditdo.doruk.ch) · [npm](https://www.npmjs.com/package/whatdiditdo)
 
 One command to see everything your AI coding agent changed. Works after any Claude Code, Cursor, Copilot, or Aider session.
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/peaktwilight/whatdiditdo
-cd whatdiditdo
-npm install
-npm run build
+npx whatdiditdo
 ```
 
-Then go to any git repo after an AI session and run:
-
-```bash
-whatdiditdo
-```
+That's it. Run it in any git repo after an AI session.
 
 ## What you get
 
@@ -37,16 +31,16 @@ whatdiditdo
 
 | Flag | What it does |
 |------|-------------|
-| `--no-ai` | Skip Claude summary, just stats |
-| `--md` | Save markdown report |
-| `--last N` | Review the last N commits |
-| `--json` | Machine-readable JSON output |
+| `npx whatdiditdo --no-ai` | Skip Claude summary, just stats |
+| `npx whatdiditdo --md` | Save markdown report |
+| `npx whatdiditdo --last N` | Review the last N commits |
+| `npx whatdiditdo --json` | Machine-readable JSON output |
 
 ## Review past commits
 
 ```bash
 # See what happened in the last 3 commits
-whatdiditdo --last 3
+npx whatdiditdo --last 3
 ```
 
 ## Quick share
@@ -71,6 +65,15 @@ Automatically flags:
 - Node.js 18+
 - Git
 - Claude Code CLI (`claude`) — optional, only for AI summary
+
+## Development
+
+```bash
+git clone https://github.com/peaktwilight/whatdiditdo
+cd whatdiditdo
+npm install
+npm run build
+```
 
 ## License
 
