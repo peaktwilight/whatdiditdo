@@ -12,6 +12,16 @@ One command to see everything your AI coding agent changed. Works after any Clau
 
 ## Quick Start
 
+Run in any git repo after an AI session:
+
+```bash
+npx whatdiditdo
+```
+
+That's it. No install needed.
+
+### Development
+
 ```bash
 npx whatdiditdo
 ```

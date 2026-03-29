@@ -3,7 +3,7 @@ import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
 
-const CLAUDE_BIN = "/Users/peak/.local/bin/claude";
+const CLAUDE_BIN = "claude";
 
 /**
  * Send the diff to the claude CLI for a plain-english summary.

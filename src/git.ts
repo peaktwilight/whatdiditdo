@@ -61,10 +61,6 @@ export async function getLog(cwd: string): Promise<string> {
   return run("git", ["log", "--oneline", "-20"], cwd);
 }
 
-export async function getDiffStat(cwd: string): Promise<string> {
-  return run("git", ["diff", "HEAD", "--stat"], cwd);
-}
-
 export async function getBranch(cwd: string): Promise<string> {
   try {
     const out = await run("git", ["rev-parse", "--abbrev-ref", "HEAD"], cwd);
