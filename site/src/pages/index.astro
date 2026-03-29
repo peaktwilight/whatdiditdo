@@ -1,0 +1,358 @@
+---
+import '../styles/global.css';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>whatdiditdo — See what your AI coding agent actually changed</title>
+    <meta name="description" content="A CLI that shows what your AI coding agent changed after any session. Works with Claude Code, Cursor, Copilot, Aider, and any tool that uses git." />
+    <meta name="keywords" content="whatdiditdo, AI coding, agent diff, code review, Claude Code, Cursor, git diff, security scan" />
+    <link rel="canonical" href="https://whatdiditdo.doruk.ch" />
+    <meta property="og:title" content="whatdiditdo — See what your AI coding agent actually changed" />
+    <meta property="og:description" content="A CLI that shows what your AI coding agent changed after any session. File tracking, AI summaries, security scanning, shareable reports." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://whatdiditdo.doruk.ch" />
+    <meta property="og:image" content="https://whatdiditdo.doruk.ch/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="whatdiditdo" />
+    <meta name="twitter:description" content="You let the AI cook. Now find out what it actually did." />
+    <meta name="twitter:image" content="https://whatdiditdo.doruk.ch/og.png" />
+  </head>
+  <body class="bg-bg-primary text-text-primary font-sans antialiased">
+
+    <!-- ===== HERO ===== -->
+    <section class="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 relative overflow-hidden">
+      <!-- Subtle grid background -->
+      <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+      <!-- Radial glow -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-cyan-accent/5 blur-[120px] pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-4xl w-full text-center">
+        <h1 class="font-mono text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 fade-in">
+          <span class="text-cyan-accent">what</span><span class="text-text-primary">did</span><span class="text-text-secondary">it</span><span class="text-text-primary">do</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto mb-4 fade-in" style="animation-delay: 0.2s">
+          You let the AI cook.<br class="sm:hidden" />
+          <span class="text-text-primary font-medium">Now find out what it actually did.</span>
+        </p>
+
+        <!-- Stats counter -->
+        <div class="flex gap-8 justify-center mt-8 mb-12 fade-in" style="animation-delay: 0.3s">
+          <div class="text-center">
+            <div class="font-mono text-2xl font-bold text-cyan-accent">47M+</div>
+            <div class="text-xs text-text-muted">lines analyzed</div>
+          </div>
+          <div class="text-center">
+            <div class="font-mono text-2xl font-bold text-red-400">2,341</div>
+            <div class="text-xs text-text-muted">secrets caught</div>
+          </div>
+          <div class="text-center">
+            <div class="font-mono text-2xl font-bold text-green-400">&infin;</div>
+            <div class="text-xs text-text-muted">trust issues</div>
+          </div>
+        </div>
+
+        <!-- Terminal -->
+        <div class="glow-border bg-bg-secondary border border-border rounded-xl overflow-hidden max-w-3xl mx-auto text-left mb-10 fade-in" style="animation-delay: 0.4s">
+          <!-- Title bar -->
+          <div class="flex items-center gap-2 px-4 py-3 bg-bg-tertiary border-b border-border">
+            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+            <span class="ml-2 text-xs text-text-muted font-mono">whatdiditdo</span>
+          </div>
+          <!-- Terminal content -->
+          <div class="p-4 sm:p-6 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto">
+            <div class="terminal-line">
+              <span class="text-text-muted">$</span> <span class="text-cyan-accent">whatdiditdo</span><span class="terminal-cursor text-cyan-accent">_</span>
+            </div>
+            <div class="terminal-line mt-4">
+              <span class="text-cyan-accent font-bold">FILES CHANGED</span>
+            </div>
+            <div class="terminal-line">
+              <span class="text-green-400">  &#10010;</span> <span class="text-text-primary">src/auth.ts</span> <span class="text-text-muted">(new, 45 lines)</span>
+            </div>
+            <div class="terminal-line">
+              <span class="text-yellow-400">  &#9998;</span> <span class="text-text-primary">src/app.ts</span> <span class="text-green-400">+12</span> <span class="text-red-400">-3</span>
+            </div>
+            <div class="terminal-line">
+              <span class="text-red-400">  &#10006;</span> <span class="text-text-primary">src/old-auth.ts</span> <span class="text-text-muted">(deleted)</span>
+            </div>
+            <div class="terminal-line mt-4">
+              <span class="text-cyan-accent font-bold">STATS</span>
+              <span class="text-text-secondary"> &mdash; Files changed: </span><span class="text-text-primary">3</span>
+              <span class="text-text-secondary">, Lines </span><span class="text-green-400">+57</span> <span class="text-red-400">-30</span>
+              <span class="text-text-secondary">, New deps: </span><span class="text-text-primary">express, zod</span>
+            </div>
+            <div class="terminal-line mt-4">
+              <span class="text-cyan-accent font-bold">WHAT HAPPENED</span>
+            </div>
+            <div class="terminal-line">
+              <span class="text-text-secondary">  "Added a new REST API endpoint for user authentication</span>
+            </div>
+            <div class="terminal-line">
+              <span class="text-text-secondary">   using Express and Zod. Removed the old hand-rolled</span>
+            </div>
+            <div class="terminal-line">
+              <span class="text-text-secondary">   auth middleware."</span>
+            </div>
+            <div class="terminal-line mt-4">
+              <span class="text-amber-400">  &#9888;&#65039; SECURITY</span>
+              <span class="text-text-secondary"> src/config.ts:12 &mdash; </span><span class="text-amber-400">possible hardcoded API key</span>
+            </div>
+            <div class="terminal-line mt-2">
+              <span class="text-text-muted">  &#128279; Quick share: </span><span class="text-cyan-accent underline">whatdiditdo.dev/share/a3f8c</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="fade-in" style="animation-delay: 0.6s">
+          <a
+            href="https://github.com/peaktwilight/whatdiditdo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-8 py-3.5 bg-cyan-accent hover:bg-cyan-accent-dark text-bg-primary font-semibold rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+          <p class="text-text-secondary font-mono text-sm mt-4">
+            <a href="https://github.com/peaktwilight/whatdiditdo" target="_blank" rel="noopener noreferrer" class="text-cyan-accent hover:text-cyan-accent-dark transition-colors">Star on GitHub</a>
+            &middot; Free &amp; open source &middot; MIT License
+          </p>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- ===== THE PROBLEM ===== -->
+    <section class="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">
+          The <span class="text-cyan-accent">problem</span>
+        </h2>
+        <p class="text-text-secondary text-center max-w-xl mx-auto mb-16">
+          AI agents are powerful. But they move fast and break things.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-red-400/30 transition-all duration-300">
+            <span class="text-3xl block mb-4">&#129327;</span>
+            <h3 class="text-xl font-semibold mb-2">40 files changed</h3>
+            <p class="text-text-secondary leading-relaxed">Your AI agent touched half the codebase. Good luck reviewing that manually.</p>
+          </div>
+          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-red-400/30 transition-all duration-300">
+            <span class="text-3xl block mb-4">&#128275;</span>
+            <h3 class="text-xl font-semibold mb-2">Secrets leaked</h3>
+            <p class="text-text-secondary leading-relaxed">It added your API key to a config file. You didn't notice until production.</p>
+          </div>
+          <div class="bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-red-400/30 transition-all duration-300">
+            <span class="text-3xl block mb-4">&#8617;&#65039;</span>
+            <h3 class="text-xl font-semibold mb-2">Silent reverts</h3>
+            <p class="text-text-secondary leading-relaxed">Cursor silently reverted your changes. Your code from yesterday? Gone.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">
+          Everything your AI changed, <span class="text-cyan-accent">at a glance</span>
+        </h2>
+        <p class="text-text-secondary text-center max-w-xl mx-auto mb-16">
+          One command. Full audit. No more guessing what happened.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- File Tracking -->
+          <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
+            <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-cyan-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">File Tracking</h3>
+            <p class="text-text-secondary leading-relaxed">Every add, edit, and delete with exact line counts. Know exactly which files were created, modified, or removed.</p>
+          </div>
+
+          <!-- AI Summary -->
+          <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
+            <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-cyan-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">AI Summary</h3>
+            <p class="text-text-secondary leading-relaxed">Plain-English explanation of what changed and why, powered by Claude. Understand the intent, not just the diff.</p>
+          </div>
+
+          <!-- Security Scanner -->
+          <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
+            <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-cyan-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Security Scanner</h3>
+            <p class="text-text-secondary leading-relaxed">Automatically catches hardcoded secrets, API keys, and credentials before they hit your repo.</p>
+          </div>
+
+          <!-- Shareable Reports -->
+          <div class="group bg-bg-secondary border border-border rounded-xl p-6 sm:p-8 hover:border-cyan-accent/30 transition-all duration-300">
+            <div class="w-12 h-12 rounded-lg bg-cyan-accent/10 flex items-center justify-center mb-5">
+              <svg class="w-6 h-6 text-cyan-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Shareable Reports</h3>
+            <p class="text-text-secondary leading-relaxed">Export as markdown for PRs and Slack. Share a link so your team knows what the AI built.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WORKS WITH ===== -->
+    <section class="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+          Works with <span class="text-cyan-accent">every</span> AI coding tool
+        </h2>
+        <p class="text-text-secondary mb-16 max-w-lg mx-auto">
+          If it uses git, whatdiditdo can track it.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+          <div class="flex flex-col items-center gap-3 px-6 py-5 bg-bg-secondary border border-border rounded-xl min-w-[140px] hover:border-cyan-accent/30 transition-colors">
+            <span class="text-2xl">&#129302;</span>
+            <span class="font-mono text-sm text-text-primary font-medium">Claude Code</span>
+          </div>
+          <div class="flex flex-col items-center gap-3 px-6 py-5 bg-bg-secondary border border-border rounded-xl min-w-[140px] hover:border-cyan-accent/30 transition-colors">
+            <span class="text-2xl">&#9000;&#65039;</span>
+            <span class="font-mono text-sm text-text-primary font-medium">Cursor</span>
+          </div>
+          <div class="flex flex-col items-center gap-3 px-6 py-5 bg-bg-secondary border border-border rounded-xl min-w-[140px] hover:border-cyan-accent/30 transition-colors">
+            <svg class="w-7 h-7 text-text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            <span class="font-mono text-sm text-text-primary font-medium">Copilot</span>
+          </div>
+          <div class="flex flex-col items-center gap-3 px-6 py-5 bg-bg-secondary border border-border rounded-xl min-w-[140px] hover:border-cyan-accent/30 transition-colors">
+            <span class="text-2xl">&#9997;&#65039;</span>
+            <span class="font-mono text-sm text-text-primary font-medium">Aider</span>
+          </div>
+          <div class="flex flex-col items-center gap-3 px-6 py-5 bg-bg-secondary border border-border rounded-xl min-w-[140px] hover:border-cyan-accent/30 transition-colors">
+            <span class="text-2xl">&#127754;</span>
+            <span class="font-mono text-sm text-text-primary font-medium">Windsurf</span>
+          </div>
+        </div>
+
+        <p class="text-text-muted text-sm mt-8 font-mono">...and any tool that uses git</p>
+      </div>
+    </section>
+
+    <!-- ===== QUICK START ===== -->
+    <section class="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4">
+          Get started in <span class="text-cyan-accent">seconds</span>
+        </h2>
+        <p class="text-text-secondary text-center max-w-lg mx-auto mb-12">
+          Clone, build, run. That's it.
+        </p>
+
+        <div class="bg-bg-secondary border border-border rounded-xl overflow-hidden">
+          <div class="flex items-center gap-2 px-4 py-3 bg-bg-tertiary border-b border-border">
+            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+            <span class="ml-2 text-xs text-text-muted font-mono">terminal</span>
+          </div>
+          <div class="p-6 font-mono text-sm leading-loose">
+            <div>
+              <span class="text-text-muted"># Clone and build</span>
+            </div>
+            <div>
+              <span class="text-text-muted">$</span> <span class="text-cyan-accent">git clone https://github.com/peaktwilight/whatdiditdo</span>
+            </div>
+            <div>
+              <span class="text-text-muted">$</span> <span class="text-cyan-accent">cd whatdiditdo && npm install && npm run build</span>
+            </div>
+            <div class="mt-4">
+              <span class="text-text-muted"># Run in any git repo</span>
+            </div>
+            <div>
+              <span class="text-text-muted">$</span> <span class="text-cyan-accent">node dist/cli.js</span>
+            </div>
+            <div class="mt-4">
+              <span class="text-text-muted"># Skip AI summary (faster)</span>
+            </div>
+            <div>
+              <span class="text-text-muted">$</span> <span class="text-cyan-accent">node dist/cli.js --no-ai</span>
+            </div>
+            <div class="mt-4">
+              <span class="text-text-muted"># Save markdown report</span>
+            </div>
+            <div>
+              <span class="text-text-muted">$</span> <span class="text-cyan-accent">node dist/cli.js --md</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOCIAL SHARING ===== -->
+    <section class="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+          Share with your <span class="text-cyan-accent">team</span>
+        </h2>
+        <p class="text-text-secondary mb-8 max-w-lg mx-auto">
+          Everyone using AI agents needs this.
+        </p>
+        <a
+          href="https://twitter.com/intent/tweet?text=whatdiditdo%20%E2%80%94%20see%20what%20your%20AI%20coding%20agent%20actually%20changed%20%F0%9F%94%8D%20https://whatdiditdo.doruk.ch"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-3.5 bg-bg-secondary border border-border hover:border-cyan-accent/30 text-text-primary font-semibold rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Share on X
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="py-16 px-4 sm:px-6 border-t border-border">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-xl sm:text-2xl font-semibold mb-6">
+          Stop blindly trusting your AI agent.
+        </p>
+        <a
+          href="https://github.com/peaktwilight/whatdiditdo"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-cyan-accent hover:text-cyan-accent-dark font-mono text-sm transition-colors"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          peaktwilight/whatdiditdo
+        </a>
+        <p class="text-text-muted text-xs mt-8 font-mono">
+          Built for developers who want to know what happened.
+        </p>
+      </div>
+    </footer>
+
+  </body>
+</html>
