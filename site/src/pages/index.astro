@@ -12,6 +12,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
     <title>whatdiditdo — See what your AI coding agent actually changed</title>
     <meta name="description" content="A CLI that shows what your AI coding agent changed after any session. Works with Claude Code, Cursor, Copilot, Aider, and any tool that uses git." />
     <meta name="keywords" content="whatdiditdo, AI coding, agent diff, code review, Claude Code, Cursor, git diff, security scan" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" as="style" />
     <link rel="canonical" href="https://whatdiditdo.doruk.ch" />
     <meta property="og:title" content="whatdiditdo — See what your AI coding agent actually changed" />
     <meta property="og:description" content="A CLI that shows what your AI coding agent changed after any session. File tracking, AI summaries, security scanning, shareable reports." />
@@ -367,24 +368,20 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
       </div>
     </section>
 
-    <!-- ===== SOCIAL SHARING ===== -->
-    <section class="py-24 sm:py-32 px-4 sm:px-6 border-t border-border">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
-          Share with your <span class="text-cyan-accent">team</span>
-        </h2>
-        <p class="text-text-secondary mb-8 max-w-lg mx-auto">
-          Everyone using AI agents needs this.
-        </p>
-        <a
-          href="https://twitter.com/intent/tweet?text=whatdiditdo%20%E2%80%94%20see%20what%20your%20AI%20coding%20agent%20actually%20changed%20%F0%9F%94%8D%20https://whatdiditdo.doruk.ch"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-8 py-3.5 bg-bg-secondary border border-border hover:border-cyan-accent/30 text-text-primary font-semibold rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-        >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          Share on X
-        </a>
+    <!-- ===== SEND TO YOUR TEAM ===== -->
+    <section class="py-20 px-4 sm:px-6 border-t border-border">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4">Your team needs this</h2>
+        <p class="text-text-secondary mb-8">Everyone using AI agents should know what they changed.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="https://twitter.com/intent/tweet?text=whatdiditdo%20%E2%80%94%20one%20command%20to%20see%20what%20your%20AI%20coding%20agent%20actually%20changed.%20Essential%20for%20any%20team%20using%20Cursor%2FClaude%20Code%20%F0%9F%94%8D%20https%3A%2F%2Fwhatdiditdo.doruk.ch" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 bg-bg-secondary border border-border rounded-lg font-mono text-sm hover:bg-bg-tertiary transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Share on X
+          </a>
+          <button onclick="navigator.clipboard.writeText('Check this out — one command to see what your AI coding agent changed: https://whatdiditdo.doruk.ch'); this.textContent='Copied!'; setTimeout(() => this.textContent='Copy link for Slack', 2000)" class="inline-flex items-center gap-2 px-6 py-3 bg-cyan-accent/10 border border-cyan-accent/30 rounded-lg font-mono text-sm text-cyan-accent hover:bg-cyan-accent/20 transition-colors cursor-pointer">
+            Copy link for Slack
+          </button>
+        </div>
       </div>
     </section>
 
