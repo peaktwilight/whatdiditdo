@@ -37,11 +37,29 @@ That's it. Run it in any git repo after an AI session.
 - **Quick share** — copy-paste one-liner for Slack/Discord
 - **Emoji summary** — compact one-line recap printed after every run
 
+## Auto-generate PR descriptions
+
+The killer feature. After an AI session:
+
+```bash
+npx whatdiditdo --pr
+```
+
+Generates a ready-to-paste PR title and body with:
+- Summary of changes
+- File change table
+- New dependencies listed
+- Security warnings
+- Test plan checklist
+
+Pipe it: `npx whatdiditdo --pr --no-ai | pbcopy`
+
 ## Flags
 
 | Flag | What it does |
 |------|-------------|
 | `npx whatdiditdo --no-ai` | Skip AI summary, just stats |
+| `npx whatdiditdo --pr` | Generate a PR title and description |
 | `npx whatdiditdo --md` | Save markdown report |
 | `npx whatdiditdo --last N` | Review the last N commits |
 | `npx whatdiditdo --json` | Machine-readable JSON output |

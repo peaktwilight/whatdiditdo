@@ -80,7 +80,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
           <div class="w-px h-12 bg-border"></div>
           <div class="text-center px-6 sm:px-8">
             <div class="font-mono text-xl sm:text-3xl font-bold text-red-400 stat-number" data-target="2341">2,341</div>
-            <div class="text-xs text-text-muted mt-1">secrets caught</div>
+            <div class="text-xs text-text-muted mt-1">secrets caught*</div>
           </div>
           <div class="w-px h-12 bg-border"></div>
           <div class="text-center px-6 sm:px-8">
@@ -88,6 +88,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
             <div class="text-xs text-text-muted mt-1">trust issues</div>
           </div>
         </div>
+        <p class="text-text-muted/40 text-[10px] font-mono mt-4">* not real numbers. but the tool is.</p>
 
         <!-- Terminal -->
         <div class="glow-border bg-bg-secondary border border-border rounded-xl overflow-hidden max-w-3xl mx-auto text-left mb-10 fade-in relative" style="animation-delay: 0.4s">
@@ -322,6 +323,9 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
           <p>We spent the next hour trying to figure out what it actually did. Reading diffs line by line. Checking if it broke anything. Wondering if it committed our API key.</p>
           <p><span class="text-cyan-accent font-medium">That hour should have been 10 seconds.</span></p>
           <p class="text-text-muted text-base">So we built the tool we wished existed.</p>
+          <p class="text-text-muted text-base mt-4">
+            Is it paranoia if the AI actually did commit your API key? We checked. It did.
+          </p>
         </div>
       </div>
     </section>
@@ -451,8 +455,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
               <ChevronDown class="w-5 h-5 text-text-muted group-open:rotate-180 transition-transform duration-200" />
             </summary>
             <div class="px-6 pb-5 text-text-secondary leading-relaxed">
-              Yes. An AI agent built this tool that audits what AI agents build. We ran whatdiditdo on itself.
-              It reported 6 files changed, +400 lines, and 0 security flags. We trust it. Mostly.
+              Yes. An AI agent built the tool that audits AI agents. We ran whatdiditdo on itself. It said everything was fine. We don't know if we should trust that.
             </div>
           </details>
         </div>
@@ -493,7 +496,7 @@ import { FileText, Brain, Shield, Share2, Github, Terminal, GitBranch, AlertTria
           </div>
         </div>
         <p class="text-text-muted text-xs font-mono mt-2">
-          Built by an AI agent. Yes, we used whatdiditdo to review our own commits. It found 3 security flags. We fixed 2.
+          Built by AI. Audited by AI. Trusted by... well, we're working on that.
         </p>
       </div>
     </footer>

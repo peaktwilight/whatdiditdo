@@ -16,10 +16,13 @@ import {
 import { summarize } from "./analyze.js";
 import { displayReport, displayNoChanges, displayEmojiSummary } from "./display.js";
 import { saveMarkdownReport } from "./markdown.js";
+import { generatePRDescription } from "./pr.js";
+import chalk from "chalk";
 
 const noAi = process.argv.includes("--no-ai");
 const wantMd = process.argv.includes("--md");
 const wantJson = process.argv.includes("--json");
+const prMode = process.argv.includes("--pr");
 
 const lastIdx = process.argv.indexOf("--last");
 const lastN = lastIdx !== -1 ? parseInt(process.argv[lastIdx + 1]) || 1 : 0;
@@ -94,6 +97,34 @@ async function main(): Promise<void> {
     summary,
     noAi,
   };
+
+  if (prMode) {
+    const pr = generatePRDescription(parsedFiles, newDeps, securityFlags, summary);
+
+    if (wantJson) {
+      console.log(JSON.stringify({ title: pr.title, body: pr.body }, null, 2));
+      return;
+    }
+
+    const LINE = "\u2500".repeat(60);
+    console.log();
+    console.log(chalk.dim(LINE));
+    console.log();
+    console.log(chalk.bold("  PR TITLE"));
+    console.log();
+    console.log(`  ${chalk.white(pr.title)}`);
+    console.log();
+    console.log(chalk.dim(LINE));
+    console.log();
+    console.log(chalk.bold("  PR BODY"));
+    console.log();
+    console.log(chalk.gray(pr.body));
+    console.log(chalk.dim(LINE));
+    console.log();
+    console.log(chalk.dim("  Copy the above into your PR. Or pipe: whatdiditdo --pr | pbcopy"));
+    console.log();
+    return;
+  }
 
   if (wantJson) {
     const jsonOutput = {
