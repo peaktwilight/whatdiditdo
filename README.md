@@ -162,6 +162,12 @@ npm run build
 
 This tool was vibe-coded by an AI agent. We used whatdiditdo to audit its own creation. It's turtles all the way down.
 
+## Also by @peaktwilight
+
+- **[pwnkit](https://pwnkit.com)** — AI-powered autonomous pentesting framework. Agents that find, exploit, and verify real vulnerabilities.
+- **[vibechecked](https://github.com/peaktwilight/vibechecked)** — Brutal AI design review for your landing page. Scores, roasts, and red flags.
+- **[unfcked](https://github.com/peaktwilight/unfcked)** — Find every production-breaking issue in your vibe-coded app. 45+ checks, zero config.
+
 ## License
 
 MIT
