@@ -164,7 +164,7 @@ This tool was vibe-coded by an AI agent. We used whatdiditdo to audit its own cr
 
 ---
 
-*Built by [Peak Twilight](https://doruk.ch) -- also building [pwnkit](https://pwnkit.com), [FoxGuard](https://foxguard.dev), [vibecheck](https://vibechecked.doruk.ch), [unfuck](https://unfcked.doruk.ch)*
+*Built by [Peak Twilight](https://doruk.ch) -- also building [pwnkit](https://0sec.ai/pwnkit), [FoxGuard](https://foxguard.dev), [vibecheck](https://vibechecked.doruk.ch), [unfuck](https://unfcked.doruk.ch)*
 
 ## License
 
