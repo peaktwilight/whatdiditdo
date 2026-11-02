@@ -21,7 +21,7 @@ ${diff.slice(0, 80000)}`;
   try {
     const { stdout } = await execFileAsync(
       CLAUDE_BIN,
-      ["-p", prompt, "--output-format", "json", "--allowedTools", "Read"],
+      ["-p", prompt, "--output-format", "json", "--tools", ""],
       {
         maxBuffer: 10 * 1024 * 1024,
         timeout: 120000,
