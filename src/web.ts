@@ -310,7 +310,7 @@ export async function openHtmlReport(
 ): Promise<void> {
   const html = generateHtmlReport(data, diff);
   const filePath = join(tmpdir(), `whatdiditdo-report-${Date.now()}.html`);
-  await writeFile(filePath, html, "utf-8");
+  await writeFile(filePath, html, { encoding: "utf-8", mode: 0o600 });
 
   const openCmd = process.platform === "darwin" ? "open" : "xdg-open";
   execFile(openCmd, [filePath], (err) => {
